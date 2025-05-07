@@ -1,0 +1,39 @@
+<!--
+
+<mat-drawer-container class="h-full" autosize>
+    <mat-drawer
+        #drawer
+        mode="side"
+        [mode]="isMobile ? 'over' : 'side'"
+        [opened]="isMobile ? false : true">
+        <app-sidebar></app-sidebar>
+    </mat-drawer>
+    <mat-drawer-content class="bg-slate-50">
+        <app-navbar>
+            <button
+                mat-icon-button
+                class="block rounded-lg p-1 text-white xl:hidden"
+                (click)="drawer.toggle()"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </app-navbar>
+        <main class="relative">
+            <div class="container-xl">
+                <router-outlet></router-outlet>
+            </div>
+        </main>
+    </mat-drawer-content>
+</mat-drawer-container>
+-->
+
+<app-sidebar></app-sidebar>
+<main class="ml-64 relative">
+    <app-navbar></app-navbar>
+    <div class="p-5">
+        <router-outlet></router-outlet>
+    </div>
+</main>
+
