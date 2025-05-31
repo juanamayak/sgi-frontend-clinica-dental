@@ -3,13 +3,13 @@
         <p class="uppercase text-slate-100 font-bold text-xs">Administración</p>
         <ul class="space-y-1 font-medium">
             <li>
-                <a href="#" class="flex items-center p-2 text-white hover:bg-cyan-800 rounded-lg group">
+                <a [routerLink]="['inicio']" class="flex items-center p-2 text-white hover:bg-cyan-800 rounded-lg group">
                     <fa-icon [icon]="faHome" class="fa-lg"></fa-icon>
                     <span class="ms-3">Inicio</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 text-white rounded-lg hover:bg-cyan-800  group">
+                <a [routerLink]="['pacientes']" class="flex items-center p-2 text-white rounded-lg hover:bg-cyan-800  group">
                     <fa-icon [icon]="faHospitalUser" class="fa-lg"></fa-icon>
                     <span class="flex-1 ms-3 whitespace-nowrap">Pacientes</span>
                 </a>
