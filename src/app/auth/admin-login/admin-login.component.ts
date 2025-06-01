@@ -1,17 +1,16 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {CommonModule} from "@angular/common";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatButtonModule} from "@angular/material/button";
-import {Router, RouterLink} from "@angular/router";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {MatInputModule} from "@angular/material/input";
 import {SessionService} from "../../services/session.service";
 import {NgxSpinnerService} from "ngx-spinner";
 import {AlertsService} from "../../services/alerts.service";
+import {Router, RouterLink} from "@angular/router";
+import {CommonModule} from "@angular/common";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
+    selector: 'app-admin-login',
     standalone: true,
     imports: [
         CommonModule,
@@ -22,9 +21,10 @@ import {AlertsService} from "../../services/alerts.service";
         ReactiveFormsModule,
         RouterLink
     ],
-    styleUrl: './login.component.scss'
+    templateUrl: './admin-login.component.html',
+    styleUrl: './admin-login.component.scss'
 })
-export class LoginComponent implements OnInit{
+export class AdminLoginComponent implements OnInit{
 
     private sessionService = inject(SessionService);
     private spinner = inject(NgxSpinnerService);
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit{
     onLogin(){
         this.spinner.show();
         const data = this.loginForm.value;
-        this.sessionService.doctorsLogin(data).subscribe({
+        this.sessionService.adminsLogin(data).subscribe({
             next: res => {
                 const token = res.token;
                 sessionStorage.setItem(this.sessionService.jwtToken, token);
