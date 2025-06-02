@@ -6,7 +6,22 @@ import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
 import {MatSort, MatSortModule} from "@angular/material/sort";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {PatientsService} from "../../services/patients.service";
-import {faHospitalUser} from "@fortawesome/free-solid-svg-icons";
+import {
+    faEllipsisVertical,
+    faHospitalUser,
+    faPenToSquare,
+    faTrash,
+    faUserPlus
+} from "@fortawesome/free-solid-svg-icons";
+import {SessionService} from "../../services/session.service";
+import {NgxSpinnerService} from "ngx-spinner";
+import {AlertsService} from "../../services/alerts.service";
+import {MatDialog} from "@angular/material/dialog";
+import {
+    CreatePatientDialogComponent
+} from "../../shared/modals/patients/create-patient-dialog/create-patient-dialog.component";
+import {MatButtonModule} from "@angular/material/button";
+import {MatMenuModule} from "@angular/material/menu";
 
 @Component({
     selector: 'app-patients',
@@ -17,7 +32,9 @@ import {faHospitalUser} from "@fortawesome/free-solid-svg-icons";
         MatTableModule,
         MatPaginatorModule,
         MatSortModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        MatButtonModule,
+        MatMenuModule,
     ],
     templateUrl: './patients.component.html',
     styleUrl: './patients.component.scss'
@@ -25,28 +42,54 @@ import {faHospitalUser} from "@fortawesome/free-solid-svg-icons";
 export class PatientsComponent implements OnInit {
 
     private patientsService = inject(PatientsService);
+    private sessionService = inject(SessionService);
+    private spinner = inject(NgxSpinnerService);
+    private alertsService = inject(AlertsService);
+    private dialog = inject(MatDialog);
 
     public patientsList: MatTableDataSource<any>;
 
-    public displayedColumns: string[] = ['id'];
+    public displayedColumns: string[] = ['name', 'lastname', 'weight', 'height', 'birthdate', 'allergies', 'address', 'created', 'action'];
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
-
-    protected readonly faHospitalUser = faHospitalUser;
 
     ngOnInit() {
         this.getPatients();
     }
 
     getPatients(){
-        this.patientsService.getPatientsByDoctor().subscribe({
+        this.spinner.show();
+        const data = {
+            doctor_uuid: this.sessionService.getUuid()
+        }
+        this.patientsService.getPatientsByDoctor(data).subscribe({
             next: data => {
-                console.log(data);
+                this.patientsList = new MatTableDataSource(data.patient);
+                this.patientsList.sort = this.sort;
+                this.patientsList.paginator = this.paginator;
+                this.spinner.hide()
             },
-            error: error => {
-                console.log(error);
+            error: err => {
+                this.spinner.hide();
+                this.alertsService.errorAlert(err.error.errors);
             }
         })
     }
+
+    openCreatePatientDialog(){
+        const dialogRef = this.dialog.open(CreatePatientDialogComponent);
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result){
+                this.getPatients();
+            }
+        });
+    }
+
+    protected readonly faHospitalUser = faHospitalUser;
+    protected readonly faUserPlus = faUserPlus;
+    protected readonly faEllipsisVertical = faEllipsisVertical;
+    protected readonly faPenToSquare = faPenToSquare;
+    protected readonly faTrash = faTrash;
 }

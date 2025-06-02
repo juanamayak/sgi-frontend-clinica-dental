@@ -14,6 +14,7 @@ export class SessionService {
     private router = inject(Router);
 
     public jwtToken = 'zotYCAeIZ4u0jw';
+    public profileToken = 'EjThEY/po1FQGA==';
 
     constructor() {
     }
@@ -36,6 +37,17 @@ export class SessionService {
 
         if (token) {
             return token;
+        }
+
+        return null;
+    }
+
+    getUuid() {
+        const profileToken = sessionStorage.getItem(this.profileToken) || '';
+        const user = JSON.parse(atob(profileToken));
+
+        if (user) {
+            return user.uuid;
         }
 
         return null;

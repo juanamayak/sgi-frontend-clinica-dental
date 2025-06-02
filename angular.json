@@ -32,6 +32,7 @@
                             }
                         ],
                         "styles": [
+                            "./node_modules/ngx-spinner/animations/ball-atom.css",
                             "@angular/material/prebuilt-themes/azure-blue.css",
                             "src/styles/tailwind.scss",
                             "src/styles/styles.scss"

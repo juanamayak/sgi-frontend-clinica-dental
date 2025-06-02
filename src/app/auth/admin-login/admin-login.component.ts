@@ -51,7 +51,9 @@ export class AdminLoginComponent implements OnInit{
         this.sessionService.adminsLogin(data).subscribe({
             next: res => {
                 const token = res.token;
+                const profile = res.user;
                 sessionStorage.setItem(this.sessionService.jwtToken, token);
+                sessionStorage.setItem(this.sessionService.profileToken, btoa(JSON.stringify(profile)));
 
                 this.router.navigate(['inicio']);
                 this.spinner.hide();

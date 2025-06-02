@@ -1,0 +1,71 @@
+<div class="flex justify-between items-center">
+    <h2 mat-dialog-title>Crear paciente</h2>
+    <button mat-icon-button mat-dialog-close class="mr-5">
+        <fa-icon [icon]="faXmark" class="fa-md"></fa-icon>
+    </button>
+</div>
+<mat-dialog-content>
+    <form [formGroup]="createPatientForm">
+        <div class="grid grid-cols-2 gap-3">
+            <mat-form-field>
+                <mat-label>Nombres del paciente</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Apellidos del peciente</mat-label>
+                <input matInput formControlName="lastname">
+            </mat-form-field>
+        </div>
+
+        <mat-form-field>
+            <mat-label>Tipo de sangre</mat-label>
+            <mat-select formControlName="blood_type_id">
+                @for (bloodType of bloodTypes; track bloodType) {
+                    <mat-option [value]="bloodType.id">{{ bloodType.name }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+
+        <div class="grid grid-cols-2 gap-3">
+            <mat-form-field>
+                <mat-label>Peso en kilogramos</mat-label>
+                <input matInput type="number" formControlName="weight">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Estatura en centimetros</mat-label>
+                <input matInput type="number" formControlName="height">
+            </mat-form-field>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+            <mat-form-field>
+                <mat-label>Día</mat-label>
+                <input matInput formControlName="day">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Mes</mat-label>
+                <mat-select formControlName="month">
+                    @for (month of months; track month) {
+                        <mat-option [value]="month.digit">{{month.month}}</mat-option>
+                    }
+
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Año</mat-label>
+                <input matInput formControlName="year">
+            </mat-form-field>
+        </div>
+        <mat-form-field>
+            <mat-label>Alergias</mat-label>
+            <input matInput formControlName="allergies">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="address">
+        </mat-form-field>
+        <button type="button" (click)="createPatient()"
+                class="text-white bg-emerald-700 hover:bg-emerald-800 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+            Crear paciente
+        </button>
+    </form>
+</mat-dialog-content>
