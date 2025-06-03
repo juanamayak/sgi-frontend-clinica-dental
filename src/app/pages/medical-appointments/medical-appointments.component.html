@@ -1,0 +1,133 @@
+<div class="space-y-5">
+    <div class="flex justify-between w-1/2">
+        <div>
+            <div class="flex items-center space-x-2">
+                <fa-icon [icon]="faCalendarDays" class="fa-md00"></fa-icon>
+                <h3 class="text-xl font-medium">Citas médicas</h3>
+            </div>
+            <!-- Breadcrumbs -->
+            <nav class="flex">
+                <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+                    <li class="inline-flex items-center">
+                        <a [routerLink]="['/pacientes']" class="inline-flex items-center text-sm font-medium text-gray-700">
+
+                            Pacientes
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="m1 9 4-4-4-4"/>
+                            </svg>
+                            <a [routerLink]="['/pacientes', patient.uuid]" class="ms-1 text-sm font-medium text-gray-700">Citas</a>
+                        </div>
+                    </li>
+                    <li aria-current="page">
+                        <div class="flex items-center">
+                            <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="m1 9 4-4-4-4"/>
+                            </svg>
+                            <span
+                                class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">{{ patient.name }} {{ patient.lastname }}</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+
+
+    </div>
+
+
+    <div class="flex gap-8">
+        <div class="w-1/3 space-y-3">
+            <button type="button"
+                    class="py-3 px-4 w-full block items-center gap-x-2 font-medium rounded-lg border border-transparent bg-cyan-700 text-white disabled:opacity-50 disabled:pointer-events-none">
+                <fa-icon [icon]="faCalendarPlus"></fa-icon>
+                Programar cita
+            </button>
+            <div class="flex flex-col gap-3">
+                <div class="bg-white border rounded-xl p-4">
+                    <h3 class="text-lg font-bold text-gray-800">
+                        Ortodoncia
+                    </h3>
+                    <p class="mt-1 text-sm font-medium uppercase text-gray-500">
+                        MEDIPLAYA SUCURSAL 28 JULIO
+                    </p>
+
+                    <div class="mt-2">
+                        <div class="flex items-center space-x-2">
+                            <fa-icon [icon]="faCalendar" class="fa-md"></fa-icon>
+                            <p class="text-gray-500">
+                                Jueves 16 noviembre 2025
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <fa-icon [icon]="faClock" class="fa-md"></fa-icon>
+                            <p class="text-gray-500">
+                                11:30 hrs
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end">
+                        <span
+                            class="inline-flex items-center text-center py-1.5 px-3 rounded-full text-xs font-medium bg-teal-500 text-white">Cita programada</span>
+                    </div>
+                </div>
+                <div class="bg-white border rounded-xl p-4">
+                    <h3 class="text-lg font-bold text-gray-800">
+                        Ortodoncia
+                    </h3>
+                    <p class="mt-1 text-sm font-medium uppercase text-gray-500">
+                        MEDIPLAYA SUCURSAL 28 JULIO
+                    </p>
+
+                    <div class="mt-2">
+                        <div class="flex items-center space-x-2">
+                            <fa-icon [icon]="faCalendar" class="fa-md"></fa-icon>
+                            <p class="text-gray-500">
+                                Jueves 16 noviembre 2025
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <fa-icon [icon]="faClock" class="fa-md"></fa-icon>
+                            <p class="text-gray-500">
+                                11:30 hrs
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end">
+                        <span
+                            class="inline-flex items-center text-center py-1.5 px-3 rounded-full text-xs font-medium bg-teal-500 text-white">Cita programada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-2/3">
+            <div class="flex justify-between mb-4 rounded-t sm:mb-5">
+                <div class="text-lg text-gray-900 md:text-xl ">
+                    <h3 class="font-semibold ">
+                        Información de la cita
+                    </h3>
+                </div>
+            </div>
+            <dl>
+                <dt class="mb-2 font-semibold leading-none text-gray-900">Información del cliente</dt>
+                <dd class="mb-4 font-light text-gray-500 sm:mb-5">
+                    <span>{{ patient.name }} {{patient.lastname }}</span>
+                    <span>{{ patient.name }} {{patient.lastname }}</span>
+                </dd>
+                <dt class="mb-2 font-semibold leading-none text-gray-900">Category</dt>
+                <dd class="mb-4 font-light text-gray-500 sm:mb-5">Electronics/PC</dd>
+            </dl>
+        </div>
+    </div>
+
+</div>

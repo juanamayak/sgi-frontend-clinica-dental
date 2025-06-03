@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {MatIcon} from "@angular/material/icon";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {
-    faArrowRightFromBracket,
+    faArrowRightFromBracket, faBuilding,
     faCashRegister,
     faHome, faHospital,
     faHospitalUser, faHouseMedical,
@@ -31,4 +31,5 @@ export class SidebarComponent {
     protected readonly faHospital = faHospital;
     protected readonly faUserDoctor = faUserDoctor;
     protected readonly faHouseMedical = faHouseMedical;
+    protected readonly faBuilding = faBuilding;
 }

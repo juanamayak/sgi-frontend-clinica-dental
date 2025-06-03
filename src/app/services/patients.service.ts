@@ -13,6 +13,10 @@ export class PatientsService {
     constructor() {
     }
 
+    getPatient(patientUuid: string){
+        return this.httpClient.get(`${this.url}/patient/${patientUuid}`);
+    }
+
     getPatientsByDoctor(data: any): Observable<any> {
         return this.httpClient.post(`${this.url}/patient/getAllByDoctor`, data);
     }

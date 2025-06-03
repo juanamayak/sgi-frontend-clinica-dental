@@ -3,10 +3,19 @@ import {HomeComponent} from "./home/home.component";
 import {PatientsComponent} from "./patients/patients.component";
 import {DoctorsComponent} from "./doctors/doctors.component";
 import {MedicalOfficesComponent} from "./medical-offices/medical-offices.component";
+import {CompaniesComponent} from "./companies/companies.component";
 
 export default [
-    { path: 'inicio', component: HomeComponent },
-    { path: 'pacientes', component: PatientsComponent },
-    { path: 'doctores', component: DoctorsComponent },
-    { path: 'consultorios', component: MedicalOfficesComponent },
+    {path: 'inicio', component: HomeComponent},
+    {
+        path: 'pacientes',
+        children: [
+            {
+                path: '', loadChildren: () => import('./patients/patients.routes')
+            },
+        ]
+    },
+    {path: 'doctores', component: DoctorsComponent},
+    {path: 'consultorios', component: MedicalOfficesComponent},
+    {path: 'empresas', component: CompaniesComponent},
 ] as Routes;

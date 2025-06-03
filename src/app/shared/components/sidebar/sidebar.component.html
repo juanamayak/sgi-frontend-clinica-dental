@@ -42,5 +42,20 @@
                 </a>
             </li>
         </ul>
+        <p class="uppercase text-white font-bold text-xs">Configuración</p>
+        <ul class="space-y-1 font-medium">
+            <li>
+                <a [routerLink]="['empresas']" class="flex items-center p-2 text-white rounded-lg hover:bg-cyan-800  group">
+                    <fa-icon [icon]="faBuilding" class="fa-lg"></fa-icon>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Servicios</span>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['empresas']" class="flex items-center p-2 text-white rounded-lg hover:bg-cyan-800  group">
+                    <fa-icon [icon]="faBuilding" class="fa-lg"></fa-icon>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Empresas</span>
+                </a>
+            </li>
+        </ul>
     </div>
 </aside>

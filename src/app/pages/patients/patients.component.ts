@@ -7,6 +7,7 @@ import {MatSort, MatSortModule} from "@angular/material/sort";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {PatientsService} from "../../services/patients.service";
 import {
+    faCalendarDays,
     faEllipsisVertical,
     faHospitalUser,
     faPenToSquare,
@@ -22,6 +23,7 @@ import {
 } from "../../shared/modals/patients/create-patient-dialog/create-patient-dialog.component";
 import {MatButtonModule} from "@angular/material/button";
 import {MatMenuModule} from "@angular/material/menu";
+import {RouterLink} from "@angular/router";
 
 @Component({
     selector: 'app-patients',
@@ -35,6 +37,7 @@ import {MatMenuModule} from "@angular/material/menu";
         FontAwesomeModule,
         MatButtonModule,
         MatMenuModule,
+        RouterLink,
     ],
     templateUrl: './patients.component.html',
     styleUrl: './patients.component.scss'
@@ -49,7 +52,7 @@ export class PatientsComponent implements OnInit {
 
     public patientsList: MatTableDataSource<any>;
 
-    public displayedColumns: string[] = ['name', 'lastname', 'weight', 'height', 'birthdate', 'allergies', 'address', 'created', 'action'];
+    public displayedColumns: string[] = ['appointments', 'name', 'lastname', 'weight', 'height', 'birthdate', 'allergies', 'address', 'created', 'action'];
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -92,4 +95,5 @@ export class PatientsComponent implements OnInit {
     protected readonly faEllipsisVertical = faEllipsisVertical;
     protected readonly faPenToSquare = faPenToSquare;
     protected readonly faTrash = faTrash;
+    protected readonly faCalendarDays = faCalendarDays;
 }

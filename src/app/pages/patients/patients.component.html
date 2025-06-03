@@ -17,6 +17,15 @@
 
     <div class="rounded-xl border p-5">
         <table mat-table [dataSource]="patientsList">
+            <ng-container matColumnDef="appointments">
+                <th mat-header-cell *matHeaderCellDef> Citas</th>
+                <td mat-cell *matCellDef="let element">
+                    <button [routerLink]="['/pacientes/citas', element.uuid]" mat-icon-button >
+                        <fa-icon [icon]="faCalendarDays" class="text-sky-700"></fa-icon>
+                    </button>
+                </td>
+            </ng-container>
+
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef> Nombre</th>
                 <td mat-cell *matCellDef="let element"> {{ element.name }}</td>
