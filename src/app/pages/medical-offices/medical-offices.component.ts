@@ -28,6 +28,7 @@ import {MatButtonModule, MatIconButton} from "@angular/material/button";
 import {MatMenu, MatMenuModule} from "@angular/material/menu";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import {MedicalOfficesService} from "../../services/medical-offices.service";
 
 @Component({
     selector: 'app-medical-offices',
@@ -46,7 +47,7 @@ import {MatInputModule} from "@angular/material/input";
     styleUrl: './medical-offices.component.scss'
 })
 export class MedicalOfficesComponent implements OnInit {
-    private patientsService = inject(PatientsService);
+    private medicalOfficesService = inject(MedicalOfficesService);
     private sessionService = inject(SessionService);
     private spinner = inject(NgxSpinnerService);
     private alertsService = inject(AlertsService);
@@ -65,7 +66,19 @@ export class MedicalOfficesComponent implements OnInit {
     }
 
     getMedicalOffices() {
-
+        this.spinner.show();
+        this.medicalOfficesService.getMedicalOffices('12345').subscribe({
+            next: data => {
+                this.medicalOfficesList = new MatTableDataSource(data.patient);
+                this.medicalOfficesList.sort = this.sort;
+                this.medicalOfficesList.paginator = this.paginator;
+                this.spinner.hide();
+            },
+            error: err => {
+                this.spinner.hide();
+                this.alertsService.errorAlert(err.error.errors);
+            }
+        })
     }
 
 

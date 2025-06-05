@@ -1,1 +1,78 @@
-<p>doctors works!</p>
+<div class="space-y-5">
+    <div class="flex items-center space-x-2">
+        <fa-icon [icon]="faUserDoctor" class="fa-md"></fa-icon>
+        <h3 class="text-xl font-medium">Doctores</h3>
+    </div>
+    <div class="flex justify-between items-center">
+        <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-1/4 p-2.5"
+               placeholder="Buscar registro por palabra clave">
+        <button type="button"
+                class="py-3 px-4 inline-flex items-center gap-x-2 font-medium rounded-lg border border-transparent bg-cyan-700 text-white disabled:opacity-50 disabled:pointer-events-none"
+        >
+            <fa-icon [icon]="faPlus"></fa-icon>
+            Agregar doctor
+        </button>
+    </div>
+
+    <div class="rounded-xl border p-5">
+        <table mat-table [dataSource]="doctorsList">
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{ element.company }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="lastname">
+                <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+                <td mat-cell *matCellDef="let element"> {{ element.name }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="active">
+                <th mat-header-cell *matHeaderCellDef> Activo</th>
+                <td mat-cell *matCellDef="let element"> {{ element.active }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="created">
+                <th mat-header-cell *matHeaderCellDef> Fecha de creación</th>
+                <td mat-cell *matCellDef="let element"> {{ element.createdAt }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <fa-icon [icon]="faEllipsisVertical" class="fa-md"></fa-icon>
+                    </button>
+                    <mat-menu #menu="matMenu" xPosition="before">
+                        <a class="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-slate-300 hover:cursor-pointer" role="menuitem" tabindex="-1"
+                           id="user-menu-item-2">
+                            <fa-icon [icon]="faPenToSquare" class="fa-md"></fa-icon>
+                            <span>Editar</span>
+                        </a>
+                        <a class="flex items-center space-x-2 px-4 py-2 text-sm text-red-600 hover:bg-red-200 hover:cursor-pointer" role="menuitem" tabindex="-1"
+                           id="user-menu-item-2">
+                            <fa-icon [icon]="faTrash" class="fa-md"></fa-icon>
+                            <span>Eliminar</span>
+                        </a>
+                    </mat-menu>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" [colSpan]="displayedColumns.length">
+                    <div class="flex flex-col space-y-4 p-12 text-center text-gray-300">
+                        <fa-icon [icon]="faHospitalUser" class="text-5xl"></fa-icon>
+                        <p class="text-lg font-medium ">
+                            No se encontraron resultados
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    </div>
+</div>

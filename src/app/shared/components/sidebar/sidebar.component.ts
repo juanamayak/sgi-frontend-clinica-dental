@@ -5,7 +5,7 @@ import {
     faArrowRightFromBracket, faBuilding,
     faCashRegister,
     faHome, faHospital,
-    faHospitalUser, faHouseMedical,
+    faHospitalUser, faHouseMedical, faListOl,
     faMoneyBill, faUserDoctor
 } from "@fortawesome/free-solid-svg-icons";
 import {RouterLink} from "@angular/router";
@@ -32,4 +32,5 @@ export class SidebarComponent {
     protected readonly faUserDoctor = faUserDoctor;
     protected readonly faHouseMedical = faHouseMedical;
     protected readonly faBuilding = faBuilding;
+    protected readonly faListOl = faListOl;
 }
