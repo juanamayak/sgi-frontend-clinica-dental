@@ -24,6 +24,8 @@
         "@fortawesome/free-brands-svg-icons": "^6.5.2",
         "@fortawesome/free-regular-svg-icons": "^6.5.2",
         "@fortawesome/free-solid-svg-icons": "^6.5.2",
+        "@ngx-dropzone/cdk": "^18.1.2",
+        "@ngx-dropzone/material": "^18.1.2",
         "ngx-spinner": "^17.0.0",
         "rxjs": "~7.8.0",
         "sweetalert2": "^11.22.0",

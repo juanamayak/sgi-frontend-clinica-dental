@@ -1,21 +1,21 @@
 <div class="space-y-5">
     <div class="flex items-center space-x-2">
-        <fa-icon [icon]="faBuilding" class="fa-lg"></fa-icon>
-        <h3 class="text-xl font-medium">Empresas</h3>
+        <fa-icon [icon]="faUsers" class="fa-lg"></fa-icon>
+        <h3 class="text-xl font-medium">Usuarios</h3>
     </div>
     <div class="flex justify-between items-center">
         <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-1/4 p-2.5"
                placeholder="Buscar registro por palabra clave">
-        <button type="button" (click)="openCreateCompanyDialog()"
+        <button type="button" (click)="openCreateUserDialog()"
                 class="py-3 px-4 inline-flex items-center gap-x-2 font-medium rounded-lg border border-transparent bg-cyan-700 text-white disabled:opacity-50 disabled:pointer-events-none"
         >
             <fa-icon [icon]="faPlus"></fa-icon>
-            Agregar empresa
+            Agregar usuario
         </button>
     </div>
 
     <div class="rounded-xl border p-5">
-        <table mat-table [dataSource]="companiesList">
+        <table mat-table [dataSource]="usersList">
 
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef> Nombre</th>

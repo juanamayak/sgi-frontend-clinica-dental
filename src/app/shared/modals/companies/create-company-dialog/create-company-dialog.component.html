@@ -1,0 +1,50 @@
+<div class="flex justify-between items-center">
+    <h2 mat-dialog-title>Crear empresa</h2>
+    <button mat-icon-button mat-dialog-close class="mr-5">
+        <fa-icon [icon]="faXmark" class="fa-md"></fa-icon>
+    </button>
+</div>
+
+<mat-dialog-content>
+    <form [formGroup]="createCompanyForm">
+        <div>
+            <mat-label>Nombres de la empresa</mat-label>
+            <mat-form-field appearance="outline">
+
+                <input matInput formControlName="name">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-label>RFC</mat-label>
+            <mat-form-field appearance="outline">
+
+                <input matInput formControlName="rfc">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-label>Código Postal</mat-label>
+            <mat-form-field appearance="outline">
+                <input matInput formControlName="zip">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-label>Dirección</mat-label>
+            <mat-form-field appearance="outline">
+                <input matInput formControlName="address">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-label>Constancia de Situación Fiscal</mat-label>
+            <mat-form-field  appearance="outline">
+                <ngx-mat-dropzone>
+                    <input type="file" fileInput />
+                </ngx-mat-dropzone>
+                <fa-icon matSuffix [icon]="faCloudArrowUp" class="mr-5 fa-xl"></fa-icon>
+            </mat-form-field>
+        </div>
+        <button type="button"
+                class="text-white bg-emerald-700 hover:bg-emerald-800 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+            Crear paciente
+        </button>
+    </form>
+</mat-dialog-content>

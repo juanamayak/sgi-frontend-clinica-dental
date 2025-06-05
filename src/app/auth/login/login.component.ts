@@ -51,7 +51,9 @@ export class LoginComponent implements OnInit{
         this.sessionService.doctorsLogin(data).subscribe({
             next: res => {
                 const token = res.token;
+                const profile = res.doctor;
                 sessionStorage.setItem(this.sessionService.jwtToken, token);
+                sessionStorage.setItem(this.sessionService.profileToken, btoa(JSON.stringify(profile)));
 
                 this.router.navigate(['inicio']);
                 this.spinner.hide();

@@ -63,10 +63,7 @@ export class PatientsComponent implements OnInit {
 
     getPatients(){
         this.spinner.show();
-        const data = {
-            doctor_uuid: this.sessionService.getUuid()
-        }
-        this.patientsService.getPatientsByDoctor(data).subscribe({
+        this.patientsService.getPatientsByDoctor(this.sessionService.getUuid()).subscribe({
             next: data => {
                 this.patientsList = new MatTableDataSource(data.patient);
                 this.patientsList.sort = this.sort;

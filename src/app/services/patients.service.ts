@@ -17,8 +17,8 @@ export class PatientsService {
         return this.httpClient.get(`${this.url}/patient/${patientUuid}`);
     }
 
-    getPatientsByDoctor(data: any): Observable<any> {
-        return this.httpClient.post(`${this.url}/patient/getAllByDoctor`, data);
+    getPatientsByDoctor(doctorUuid: string): Observable<any> {
+        return this.httpClient.get(`${this.url}/patient/getAllByDoctor/${doctorUuid}`);
     }
 
     createPatient(data: any): Observable<any> {
