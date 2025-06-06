@@ -1,1 +1,25 @@
-<p>create-medical-office-dialog works!</p>
+<div class="flex justify-between items-center">
+    <h2 mat-dialog-title>Crear consultorio</h2>
+    <button mat-icon-button mat-dialog-close class="mr-5">
+        <fa-icon [icon]="faXmark" class="fa-md"></fa-icon>
+    </button>
+</div>
+<mat-dialog-content>
+    <form [formGroup]="createMedicalOfficeForm">
+        <div class="grid grid-cols-2 gap-3">
+            <mat-form-field>
+                <mat-label>Nombre del consultorio</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Dirección del consultorio</mat-label>
+                <input matInput formControlName="address">
+            </mat-form-field>
+        </div>
+
+        <button type="button"
+                class="text-white bg-emerald-700 hover:bg-emerald-800 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+            Crear paciente
+        </button>
+    </form>
+</mat-dialog-content>

@@ -16,4 +16,8 @@ export class UsersService {
     getUsers(userUuid: string): Observable<any> {
         return this.httpClient.get(`${this.url}/company/getAllByUser/${userUuid}`);
     }
+
+    createUsers(data: any): Observable<any> {
+        return this.httpClient.post(`${this.url}/user/store`, data);
+    }
 }

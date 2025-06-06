@@ -6,7 +6,7 @@
     <div class="flex justify-between items-center">
         <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-1/4 p-2.5"
                placeholder="Buscar registro por palabra clave">
-        <button type="button"
+        <button type="button" (click)="openCreateMedicalOfficeDialog()"
                 class="py-3 px-4 inline-flex items-center gap-x-2 font-medium rounded-lg border border-transparent bg-cyan-700 text-white disabled:opacity-50 disabled:pointer-events-none"
                 >
             <fa-icon [icon]="faPlus"></fa-icon>

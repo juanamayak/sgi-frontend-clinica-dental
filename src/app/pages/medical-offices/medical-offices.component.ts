@@ -29,6 +29,12 @@ import {MatMenu, MatMenuModule} from "@angular/material/menu";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MedicalOfficesService} from "../../services/medical-offices.service";
+import {
+    CreatePatientDialogComponent
+} from "../../shared/modals/patients/create-patient-dialog/create-patient-dialog.component";
+import {
+    CreateMedicalOfficeDialogComponent
+} from "../../shared/modals/medical-offices/create-medical-office-dialog/create-medical-office-dialog.component";
 
 @Component({
     selector: 'app-medical-offices',
@@ -67,7 +73,7 @@ export class MedicalOfficesComponent implements OnInit {
 
     getMedicalOffices() {
         this.spinner.show();
-        this.medicalOfficesService.getMedicalOffices('12345').subscribe({
+        this.medicalOfficesService.getMedicalOfficesByCompany('12345').subscribe({
             next: data => {
                 this.medicalOfficesList = new MatTableDataSource(data.patient);
                 this.medicalOfficesList.sort = this.sort;
@@ -78,7 +84,17 @@ export class MedicalOfficesComponent implements OnInit {
                 this.spinner.hide();
                 this.alertsService.errorAlert(err.error.errors);
             }
-        })
+        });
+    }
+
+    openCreateMedicalOfficeDialog() {
+        const dialogRef = this.dialog.open(CreateMedicalOfficeDialogComponent);
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.getMedicalOffices();
+            }
+        });
     }
 
 

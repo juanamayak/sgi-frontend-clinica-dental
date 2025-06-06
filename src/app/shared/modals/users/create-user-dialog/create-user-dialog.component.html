@@ -1,1 +1,52 @@
-<p>create-user-dialog works!</p>
+<div class="flex justify-between items-center">
+    <h2 mat-dialog-title>Crear usuario</h2>
+    <button mat-icon-button mat-dialog-close class="mr-5">
+        <fa-icon [icon]="faXmark" class="fa-md"></fa-icon>
+    </button>
+</div>
+
+
+<mat-dialog-content>
+    <form [formGroup]="createUserForm">
+        <div class="grid grid-cols-2 gap-3">
+            <div>
+                <mat-label>Nombre (s)</mat-label>
+                <mat-form-field appearance="outline">
+
+                    <input matInput formControlName="name">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-label>Apellidos</mat-label>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="lastname">
+                </mat-form-field>
+            </div>
+        </div>
+        <div>
+            <mat-label>Teléfono</mat-label>
+            <mat-form-field appearance="outline">
+                <input matInput formControlName="telephone">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-label>Correo electrónico</mat-label>
+            <mat-form-field appearance="outline">
+                <input matInput formControlName="email">
+            </mat-form-field>
+        </div>
+
+        <div >
+            <mat-label>Contraseña</mat-label>
+            <mat-form-field appearance="outline">
+                <input matInput type="password" formControlName="password">
+            </mat-form-field>
+        </div>
+
+        <button type="button" (click)="createUser()"
+                class="text-white bg-emerald-700 hover:bg-emerald-800 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+            Crear usuario
+        </button>
+    </form>
+</mat-dialog-content>
+

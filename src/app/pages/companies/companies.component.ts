@@ -64,7 +64,7 @@ export class CompaniesComponent implements OnInit {
 
     getCompanies() {
         this.spinner.show();
-        this.companiesService.getCompanies(this.sessionService.getUuid()).subscribe({
+        this.companiesService.getCompaniesByUser(this.sessionService.getUuid()).subscribe({
             next: data => {
                 this.companiesList = new MatTableDataSource(data.company);
                 this.companiesList.sort = this.sort;

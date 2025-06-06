@@ -1,6 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
-import {MatDialogModule} from "@angular/material/dialog";
+import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import {faCloudArrowUp, faXmark} from "@fortawesome/free-solid-svg-icons";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
@@ -11,6 +11,9 @@ import {DropzoneMaterialModule} from "@ngx-dropzone/material";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {DropzoneCdkModule} from "@ngx-dropzone/cdk";
+import {CompaniesService} from "../../../../services/companies.service";
+import {NgxSpinnerService} from "ngx-spinner";
+import {AlertsService} from "../../../../services/alerts.service";
 
 @Component({
     selector: 'app-create-company-dialog',
@@ -33,7 +36,11 @@ import {DropzoneCdkModule} from "@ngx-dropzone/cdk";
 })
 export class CreateCompanyDialogComponent implements OnInit {
 
+    private companiesService = inject(CompaniesService);
     private formBuilder = inject(FormBuilder);
+    private spinner = inject(NgxSpinnerService);
+    private alertsService = inject(AlertsService);
+    private dialogRef = inject(MatDialogRef);
 
     public createCompanyForm: FormGroup;
 
@@ -48,6 +55,26 @@ export class CreateCompanyDialogComponent implements OnInit {
             address: ['', Validators.required],
             zip: ['', Validators.required]
         });
+    }
+
+    createCompany(){
+        const data = this.createCompanyForm.value;
+        this.companiesService.createCompanies(data).subscribe({
+            next: data => {
+                this.spinner.hide();
+                this.alertsService.successAlert(data.message).then(
+                    res =>{
+                        if (res.isConfirmed){
+                            this.dialogRef.close(res.isConfirmed);
+                        }
+                    }
+                )
+            },
+            error: err => {
+                this.spinner.hide();
+                this.alertsService.errorAlert(err.error.errors);
+            }
+        })
     }
 
     protected readonly faXmark = faXmark;

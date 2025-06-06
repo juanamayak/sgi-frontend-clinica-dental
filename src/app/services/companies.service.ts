@@ -13,7 +13,11 @@ export class CompaniesService {
     constructor() {
     }
 
-    getCompanies(userUuid: string): Observable<any> {
+    getCompaniesByUser(userUuid: string): Observable<any> {
         return this.httpClient.get(`${this.url}/company/getAllByUser/${userUuid}`);
+    }
+
+    createCompanies(userUuid: string): Observable<any> {
+        return this.httpClient.get(`${this.url}/company/create`);
     }
 }
